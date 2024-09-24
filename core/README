@@ -1,1 +1,2 @@
-###  core are stuff that I can create as a separate package 
+# Overview 
+The packages inside core directory are utility packages I can create as a separate package. Given the monolith approach here I kept them inside this directory. However, in more team oriented microservices they can become a separate repositories themselves.
