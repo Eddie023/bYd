@@ -16,4 +16,4 @@ Serverless starter kit built with Golang, AWS, Postgres, and Terraform. The goal
 3. run `make migrate-up DB_CONNECTION_URI="postgres://root:postgres@localhost:5432/postgres?sslmode=disable"` 
 3. Connect to your postgres using psql command `psql --host localhost --port 5432 --user root --db postgres` and run your seed script by copy pasting `./migrations/seeds/insert_fakes.sql`  
 
-Test if you service is running as expected by using `make get-posts` 
+Test if your service is running as expected by using `make get-posts` 
