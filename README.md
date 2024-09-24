@@ -17,6 +17,8 @@ A serverless starter kit built with Golang, AWS, Postgres, and Terraform. This p
 1. **Infrastructure as Code(IaC) with Terraform**: The repository leverages Terraform to define and manage cloud infrastructure as code, ensuring a reproducible and scalable setup for AWS resources.
 
 ## Running The Project Locally
+<details>
+<summary>Details</summary>
 
 ### Initial Database Setup
 
@@ -40,9 +42,12 @@ and run your seed script by copy pasting `./migrations/seeds/insert_fakes.sql`
 Verify that the service running as expected by using 
 ```
 make get-posts
-``` 
+```
+</details>
 
 ## Deploying to AWS Using Terraform 
+<details>
+<summary>Details</summary>
 
 ### Prerequisites:
 1. **AWS Account**: Ensure you have an AWS account with appropriate access permissions to provision resources (EC2, RDS, etc.).
@@ -92,3 +97,5 @@ Move to `./infra/terraform/remote-state` directory and run `terraform init` to i
         curl -X GET $(terraform output -raw api_gateway_endopint)/v1/posts -H "Authorization: Bearer <YOUR_ID_TOKEN>"
         ```
         You should receive a valid response from the API when the correct ID token is provided.
+
+</details>
