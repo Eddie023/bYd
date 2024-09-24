@@ -84,7 +84,9 @@ resource "aws_cognito_user_pool_client" "main" {
   generate_secret                      = false
   allowed_oauth_flows_user_pool_client = true
   allowed_oauth_flows                  = ["code", "implicit"]
-  supported_identity_providers         = ["COGNITO", "Google"]
+  supported_identity_providers         = ["COGNITO"]
+  # NOTE: uncomment the following if you are using Google as your identity provider
+  # supported_identity_providers         = ["COGNITO", "Google"]
   allowed_oauth_scopes                 = ["email", "openid"]
   // ADD your Production URL callback and logout URLs 
   callback_urls                        = ["http://localhost:3000/login"] 
