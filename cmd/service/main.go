@@ -42,7 +42,9 @@ func run(ctx context.Context, log *logger.Log) error {
 		return fmt.Errorf("connecting db: %w", err)
 	}
 
-	h, err := handler.NewAPIHandler(db, log, &auth.LocalAuth{})
+	h, err := handler.NewAPIHandler(db, log, &auth.LocalAuth{
+		UserID: "user_001",
+	})
 	if err != nil {
 		return fmt.Errorf("failed setting up handler: %w", err)
 	}

@@ -7,7 +7,7 @@ import (
 
 func (d *DB) GetUserByID(ctx context.Context, userID string) (User, error) {
 	var user User
-	err := d.pool.QueryRow(ctx, fmt.Sprintf("SELECT id FROM users WHERE id = %s", userID)).Scan(&user.ID)
+	err := d.pool.QueryRow(ctx, fmt.Sprintf("SELECT id FROM users WHERE id = '%s'", userID)).Scan(&user.ID)
 	if err != nil {
 		return user, err
 	}

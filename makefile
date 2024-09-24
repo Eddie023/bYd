@@ -29,3 +29,6 @@ migrate-up:
 
 migrate-down:
 	migrate -source file://migrations -database ${DB_CONNECTION_URI} down 
+
+get-posts:
+	curl curl http://localhost:8000/v1/posts 
