@@ -1,0 +1,14 @@
+pg_data
+
+**/node_modules
+**/.next
+
+bin/**
+.env
+./bin/**
+lambda-handler.zip
+
+.terraform 
+terraform.tfstate.backup
+
+coverage.out

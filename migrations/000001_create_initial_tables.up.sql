@@ -1,0 +1,41 @@
+CREATE TABLE IF NOT EXISTS state(
+   id INT PRIMARY KEY, 
+   name VARCHAR(50) NOT NULL,
+   code VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS users(
+   id VARCHAR (100) PRIMARY KEY,
+   email VARCHAR (100) NOT NULL, 
+   first_name VARCHAR (50) NOT NULL,
+   last_name VARCHAR (50) NOT NULL,
+   state_id INT REFERENCES state(id), 
+   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+   is_verified BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS post_type(
+   id int PRIMARY KEY,
+   name VARCHAR(50) NOT NULL 
+);
+
+CREATE TABLE IF NOT EXISTS post(
+   id serial PRIMARY KEY,
+   user_id VARCHAR(100) REFERENCES users(id),
+   title VARCHAR (50) NOT NULL,
+   is_anon BOOLEAN NOT NULL DEFAULT FALSE, 
+   description VARCHAR(4000) NOT NULL,
+   type_id INT REFERENCES post_type(id), 
+   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS comment(
+   id serial PRIMARY KEY, 
+   post_id INT REFERENCES post(id),
+   user_id VARCHAR(100) REFERENCES users(id),
+   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+   description VARCHAR(1000) NOT NULL
+);

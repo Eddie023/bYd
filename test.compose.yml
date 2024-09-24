@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16.4
+    container_name: postgres_container
+    restart: "unless-stopped"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+
+  service:
+    container_name: testservice
+    build:
+      context: .
+      dockerfile: test.dockerfile
+    volumes:
+      - .:/go/src/github.com/eddie023/byd
+    environment:
+      - DB_CONNECTION_URI="postgres://root:postgres@db:5432/postgres?sslmode=disable"\
+      - DB_HOSTNAME=db
+    depends_on:
+      - db

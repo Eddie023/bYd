@@ -1,0 +1,225 @@
+openapi: 3.1.0
+x-stoplight:
+  id: bkm6usur8gx06
+info:
+  title: bYd Application Server API
+  version: "1.0"
+  summary: "REST APIs for bYd"
+  description: ""
+  contact:
+    name: ""
+servers:
+  - url: "http://localhost:8000"
+paths:
+  /v1/posts:
+    parameters: []
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        2XX:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  posts:
+                    type: array
+                    x-stoplight:
+                      id: e5g8rwprjgxlt
+                    items:
+                      $ref: "#/components/schemas/Post"
+                      x-stoplight:
+                        id: ame0w139e0ocp
+      operationId: get-all-posts
+      x-stoplight:
+        id: jzf1qzu7ni8ui
+      description: ""
+    post:
+      summary: Your POST endpoint
+      tags: []
+      responses:
+        "200":
+          description: New Post created.
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Post"
+      operationId: create-new-post
+      x-stoplight:
+        id: 1a4vtp78jsrim
+      description: "Create new post"
+      requestBody:
+        $ref: "#/components/requestBodies/CreatePost"
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      examples:
+        - id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: "1997-10-31"
+          emailVerified: true
+          signUpDate: "2019-08-24"
+      required:
+        - id
+        - firstName
+        - lastName
+        - isVerified
+        - state
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the given user.
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        createdAt:
+          type: string
+          format: date
+          description: The date that the user was created.
+          x-stoplight:
+            id: j5ejm1v5pk2a2
+        isVerified:
+          type: boolean
+          x-stoplight:
+            id: u71ztl5w25cp8
+        state:
+          $ref: "#/components/schemas/State"
+          x-stoplight:
+            id: c1ruxaezgce8h
+    Post:
+      title: Post
+      x-stoplight:
+        id: qacvs9gorlp76
+      type: object
+      required:
+        - id
+        - userId
+        - isAnon
+        - title
+        - description
+        - createdAt
+        - type
+      properties:
+        id:
+          type: integer
+          x-stoplight:
+            id: b76cxz1uy2jdo
+        userId:
+          type: string
+          x-stoplight:
+            id: ihi2x3pkiqcfv
+        isAnon:
+          type: boolean
+          x-stoplight:
+            id: lrfd7znxqabn8
+        title:
+          type: string
+          x-stoplight:
+            id: j71o80y5t2ijv
+        description:
+          type: string
+          x-stoplight:
+            id: 0ospzb1y3jo8x
+        createdAt:
+          type: string
+          x-stoplight:
+            id: v9a0jz8dlvq7b
+          format: date-time
+        type:
+          x-stoplight:
+            id: p85rimdnftacv
+          type: integer
+        comments:
+          $ref: "#/components/schemas/Comment"
+          x-stoplight:
+            id: pj7ey3vs0pp3c
+    Comment:
+      title: Comment
+      x-stoplight:
+        id: 31q3uhb7ehnbq
+      type: object
+      required:
+        - id
+        - postId
+        - description
+        - createdAt
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: dkczylhg5dqwn
+        postId:
+          type: integer
+          x-stoplight:
+            id: fdhluciau2xix
+        description:
+          type: string
+          x-stoplight:
+            id: hgckw7fl1g7qe
+        createdAt:
+          type: string
+          x-stoplight:
+            id: mzyobqes56tu5
+          format: date-time
+    State:
+      title: State
+      x-stoplight:
+        id: rljqq3ctpt7hc
+      type: object
+      required:
+        - id
+        - name
+        - code
+      properties:
+        id:
+          type: string
+          x-stoplight:
+            id: n93dr9z6d3hy1
+        name:
+          type: string
+          x-stoplight:
+            id: x4ebiq24yv7g9
+        code:
+          type: string
+          x-stoplight:
+            id: qevdcjgcuamox
+  requestBodies:
+    CreatePost:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - title
+              - isAnon
+              - description
+              - type
+            properties:
+              title:
+                type: string
+                x-stoplight:
+                  id: m8hpmra951z0i
+              isAnon:
+                type: boolean
+                x-stoplight:
+                  id: ys7fcte5sb4z2
+              description:
+                type: string
+                x-stoplight:
+                  id: wbupi3q2hkjvj
+                maxLength: 2000
+              type:
+                type: string
+                x-stoplight:
+                  id: t8blq21y1fluf

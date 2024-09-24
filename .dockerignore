@@ -1,0 +1,8 @@
+/cmd/lambda/** 
+
+/bin/**
+.github/**
+
+infra/**
+
+pg_data/**
