@@ -1,7 +1,7 @@
 ![Build Status](https://github.com/eddie023/bYd/actions/workflows/main.yml/badge.svg?branch=main)
 
 # Bootstrap Your Dream (bYd)
-Serverless starter kit built with Golang, AWS, Terraform. The goal of this project is to provide cost-effective enterprise grade starting point to launch a new project into production. Largely inspired by my own experience working on production systems.
+Serverless starter kit built with Golang, AWS, Postgres, and Terraform. The goal of this project is to provide cost-effective enterprise grade starting point to launch a new project into production. Largely inspired by my own experience working on production systems.
 
 ## High Level System Design Considerations:
 1. The codebase is maintained such that it follows the [Clean Code Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)  which emphasizes the separation of concerns,  making codebase more maintainable, testable and scalable.
