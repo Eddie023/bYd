@@ -42,19 +42,19 @@ func (h *Lambda) Handler(ctx context.Context, req events.APIGatewayProxyRequest)
 
 func buildHandler() (*Lambda, error) {
 	ctx := context.Background()
+	log := logger.New(os.Stdout, "lambda-rest-api")
 
 	cfg, err := config.New()
 	if err != nil {
 		return nil, err
 	}
 
-	slog.Debug("using config", "config", cfg)
+	log.Debug("using config", "config", cfg)
 	db, err := store.NewDB(ctx, cfg.Db.ConnectionURI)
 	if err != nil {
 		return nil, err
 	}
-
-	log := logger.New(os.Stdout, "lambda-rest-api")
+	
 	h, err := handler.NewAPIHandler(db, log, &auth.LambdaAuthenticator{})
 	if err != nil {
 		return nil, err
