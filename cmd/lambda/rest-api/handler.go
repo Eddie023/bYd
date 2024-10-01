@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"log/slog"
 	"net/http"
 	"os"
 
@@ -49,12 +48,12 @@ func buildHandler() (*Lambda, error) {
 		return nil, err
 	}
 
-	log.Debug("using config", "config", cfg)
+	log.Debug(ctx, "using config", "config", cfg)
 	db, err := store.NewDB(ctx, cfg.Db.ConnectionURI)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	h, err := handler.NewAPIHandler(db, log, &auth.LambdaAuthenticator{})
 	if err != nil {
 		return nil, err
